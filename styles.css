@@ -154,6 +154,23 @@ h1{
 .card__header{padding:18px 18px 0}
 .kicker{color:var(--muted); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.12em}
 .hero__card{display:flex; flex-direction:column; gap:12px}
+.videoCard{overflow:hidden}
+.videoList{display:grid; gap:12px; padding:14px 18px 18px}
+.videoEmbed{
+  position:relative;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#000;
+}
+.videoEmbed iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
 
 .form{padding:14px 18px 18px; display:flex; flex-direction:column; gap:12px}
 label{display:flex; flex-direction:column; gap:8px; font-weight:700; font-size:13px}
@@ -297,6 +314,45 @@ input::placeholder, textarea::placeholder{color: rgba(169,179,199,.7)}
   color: var(--muted);
   font-size:12px;
 }
+.galleryGrid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:14px;
+}
+.galleryGrid img{
+  width:100%;
+  aspect-ratio:4 / 3;
+  object-fit:cover;
+  display:block;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.03);
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+  transition:transform .2s ease, border-color .2s ease;
+}
+.galleryGrid img:hover{
+  transform:translateY(-3px);
+  border-color:rgba(45,212,191,.45);
+}
+.galleryGroup + .galleryGroup{margin-top:34px}
+.galleryGroup__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.galleryGroup__head h3{margin:0; font-size:24px}
+.galleryGroup__head .tag{margin-top:0}
+.galleryGrid--rally{grid-template-columns:repeat(2, minmax(0, 1fr))}
+.galleryVideos{margin-top:34px}
+.galleryVideos .section__head h3{margin:0 0 8px; font-size:24px}
+.trainingVideoGrid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:14px;
+}
+.trainingVideo h4{margin:10px 2px 0; font-size:15px}
 .aboutGrid{
   display:grid;
   grid-template-columns: 1.25fr .85fr;
@@ -381,12 +437,27 @@ input::placeholder, textarea::placeholder{color: rgba(169,179,199,.7)}
 }
 .cIcon{font-size:20px}
 .cTitle{font-weight:900}
-.mapHint{
+.locationLink{
+  display:inline-block;
+  margin-top:6px;
+  color:rgba(96,165,250,.95);
+  font-size:13px;
+  font-weight:800;
+}
+.locationLink:hover{color:var(--brand)}
+.mapEmbed{
   margin-top:12px;
-  border:1px dashed rgba(255,255,255,.18);
-  color: var(--muted);
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  border:1px solid var(--line);
   border-radius: 18px;
-  padding:14px;
+  background:rgba(255,255,255,.03);
+}
+.mapEmbed iframe{
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
 }
 
 .footer{
@@ -448,6 +519,12 @@ input::placeholder, textarea::placeholder{color: rgba(169,179,199,.7)}
   .event{
     align-items:flex-start;
   }
+  .galleryGrid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+  .trainingVideoGrid{
+    grid-template-columns:1fr;
+  }
   .footer__grid{
     grid-template-columns:1fr;
   }
@@ -476,6 +553,15 @@ input::placeholder, textarea::placeholder{color: rgba(169,179,199,.7)}
   .container{width:min(1120px, 94%)}
   .section{padding:44px 0}
   .section__head h2{font-size:24px}
+  .galleryGrid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .galleryGroup__head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .galleryGroup__head h3{font-size:21px}
   h1{
     font-size: clamp(28px, 8vw, 36px);
     line-height:1.1;
