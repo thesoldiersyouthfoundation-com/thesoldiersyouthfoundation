@@ -21,10 +21,9 @@ Branch: `redesign` → merge into `main` (GitHub Pages deploys from `main`).
 
 The release check fails until these are done.
 
-- [ ] Chairman's full name — `index.html`, `about.html` (search `[TODO`)
-- [ ] Trustee names and one-line roles — `about.html`
-- [ ] Formspree form ID — replace `YOUR_FORM_ID` in `contact.html`, `programmes.html`, `partner.html`
-- [ ] Confirm `contact@thesoldiersyouthfoundation.com` receives mail (Cloudflare Email Routing now, Google Workspace later)
+- [x] Chairman's full name: Lieutenant Colonel (Dr) S. Srinivas Rao
+- [x] Formspree forms: Contact `xljjjwpk`, Partnership `xqpppdyj`, Training application `mnpppbgg` (all email thesoldiersyouthfoundation@gmail.com)
+- [x] Public email: thesoldiersyouthfoundation@gmail.com until contact@thesoldiersyouthfoundation.com receives mail
 - [ ] Confirm PIN 500011 and that the registered address is the right public address
 - [ ] Submit each form once on the live preview and confirm the email arrives
 
@@ -33,6 +32,9 @@ Run `bash scripts/check-release.sh` locally. It must print "Release check passed
 ## Add when the foundation sends them
 
 Each of these was removed rather than shown as a placeholder. Add them back when real data exists.
+
+- Trustee names and one-line roles: `about.html`, after the chairman (marked with a comment).
+- Switch the public email to contact@thesoldiersyouthfoundation.com once it receives mail (all pages and the structured data in `index.html`).
 
 - 12A, 80G, CSR-1, NGO Darpan ID: add to the credentials strip (`index.html`) and the table on `about.html#transparency`. List only what they hold.
 - Registration certificate and audited accounts PDFs: put in `assets/docs/` and link from `about.html#transparency`.
