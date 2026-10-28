@@ -1,4 +1,11 @@
+const SHEETS_URL = (window.SYF_CONFIG && window.SYF_CONFIG.sheetsUrl) || "";
+
 document.querySelectorAll("[data-year]").forEach(el => { el.textContent = new Date().getFullYear(); });
+
+function sendToSheets(data) {
+  if (!SHEETS_URL) return Promise.resolve();
+  return fetch(SHEETS_URL, { method: "POST", mode: "no-cors", body: new URLSearchParams(data) }).catch(() => {});
+}
 
 document.querySelectorAll("form[data-form]").forEach(form => {
   const status = form.querySelector(".form__status");
@@ -17,12 +24,12 @@ document.querySelectorAll("form[data-form]").forEach(form => {
     button.textContent = "Sending...";
     status.textContent = "";
     status.className = "form__status";
+    const data = new FormData(form);
     try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      });
+      const [res] = await Promise.all([
+        fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } }),
+        sendToSheets(data)
+      ]);
       if (!res.ok) throw new Error(String(res.status));
       form.reset();
       status.textContent = form.dataset.success || "Thank you. We have received your message.";
@@ -36,6 +43,33 @@ document.querySelectorAll("form[data-form]").forEach(form => {
     }
   });
 });
+
+const impact = document.querySelector("[data-impact]");
+if (impact && SHEETS_URL) {
+  fetch(SHEETS_URL + "?action=stats")
+    .then(r => r.json())
+    .then(d => {
+      const stats = (d && Array.isArray(d.stats)) ? d.stats.filter(s => s.label && s.value) : [];
+      if (!stats.length) return;
+      const grid = impact.querySelector("[data-impact-grid]");
+      stats.forEach(s => {
+        const card = document.createElement("div");
+        card.className = "stat";
+        const v = document.createElement("span");
+        v.className = "stat__value";
+        v.textContent = s.value;
+        const l = document.createElement("span");
+        l.className = "stat__label";
+        l.textContent = s.label;
+        card.append(v, l);
+        grid.append(card);
+      });
+      const asOf = impact.querySelector("[data-impact-asof]");
+      if (asOf && d.asOf) asOf.textContent = "Figures as of " + d.asOf + ".";
+      impact.hidden = false;
+    })
+    .catch(() => {});
+}
 
 const chips = document.querySelectorAll(".chip[data-filter]");
 chips.forEach(chip => {

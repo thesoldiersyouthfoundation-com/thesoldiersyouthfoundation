@@ -45,6 +45,12 @@ Each of these was removed rather than shown as a placeholder. Add them back when
 - Funding package amounts: Partner "Ways to fund".
 - Office hours: Contact page.
 
+## Google Sheets (optional, recommended)
+
+- Forms also post to a Google Sheet, which emails an alert per submission; the home page Impact section reads its figures from the sheet's Stats tab.
+- Set up per `docs/google-sheets-setup.md`, then paste the web app URL into `js/config.js`.
+- With `sheetsUrl` empty, Sheets is off: forms still go to Formspree and the Impact section stays hidden.
+
 ## Deploy steps
 
 1. In VS Code: `git fetch` the branch (see below), check it out and open the pages with Live Server.
