@@ -13,9 +13,29 @@ const TABS = {
 const STATS_TAB = 'Stats';
 const MAX_FIELD_LENGTH = 2000;
 
+// STEP 1: choose "setup" in the dropdown next to Run, then click Run once.
+// It creates the Applications, Partnerships, Contact and Stats tabs.
+function setup() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  Object.keys(TABS).forEach(k => {
+    const s = ss.getSheetByName(TABS[k]) || ss.insertSheet(TABS[k]);
+    if (!s.getLastRow()) { s.appendRow(['Received']); s.setFrozenRows(1); }
+  });
+  let st = ss.getSheetByName(STATS_TAB);
+  if (!st) {
+    st = ss.insertSheet(STATS_TAB);
+    st.appendRow(['Label', 'Value', 'Show on website']);
+    [['Young people trained'], ['Selected into the Armed Forces'], ['Placed in jobs'], ['Veteran mentors'], ['As of']]
+      .forEach(r => st.appendRow([r[0], '', false]));
+    st.getRange(2, 3, 5, 1).insertCheckboxes();
+    st.setFrozenRows(1);
+  }
+}
+
 function doPost(e) {
   const p = (e && e.parameter) || {};
-  if (p._gotcha) return json_({ ok: true });
+  // Run from the editor (no form data) or a spam bot: do nothing.
+  if (!Object.keys(p).length || p._gotcha) return json_({ ok: true, ignored: true });
 
   const formName = TABS[p.form] ? p.form : 'Contact';
   const fields = Object.keys(p).filter(k => k !== 'form' && k.charAt(0) !== '_');
@@ -75,24 +95,6 @@ function doGet(e) {
   const text = JSON.stringify(out);
   cache.put('stats', text, 300);
   return ContentService.createTextOutput(text).setMimeType(ContentService.MimeType.JSON);
-}
-
-// Run once from the editor to create the tabs.
-function setup() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  Object.keys(TABS).forEach(k => {
-    const s = ss.getSheetByName(TABS[k]) || ss.insertSheet(TABS[k]);
-    if (!s.getLastRow()) { s.appendRow(['Received']); s.setFrozenRows(1); }
-  });
-  let st = ss.getSheetByName(STATS_TAB);
-  if (!st) {
-    st = ss.insertSheet(STATS_TAB);
-    st.appendRow(['Label', 'Value', 'Show on website']);
-    [['Young people trained'], ['Selected into the Armed Forces'], ['Placed in jobs'], ['Veteran mentors'], ['As of']]
-      .forEach(r => st.appendRow([r[0], '', false]));
-    st.getRange(2, 3, 5, 1).insertCheckboxes();
-    st.setFrozenRows(1);
-  }
 }
 
 function clean_(v) {

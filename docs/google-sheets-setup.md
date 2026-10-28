@@ -12,7 +12,7 @@ Sign in to Google as **thesoldiersyouthfoundation@gmail.com** for every step.
 
 ## 2. Create the tabs
 
-1. In the Apps Script editor, choose the **setup** function and click **Run**.
+1. In the Apps Script editor, open the function dropdown next to **Run** and pick **setup** (it is the default). Then click **Run**. Do not run `doPost` or `doGet` from the editor; they only work when the website calls them.
 2. Google asks for permission. Review it and allow it for the foundation's account. The script needs to edit this spreadsheet and send email as you.
 3. The sheet now has tabs **Applications**, **Partnerships**, **Contact** and **Stats**.
 
