@@ -3,8 +3,12 @@
 set -u
 cd "$(dirname "$0")/.."
 fail=0
-if grep -n -E '\[TODO|YOUR_FORM_ID' --include='*.html' -r . ; then
+if grep -n -E '\[TODO|YOUR_FORM_ID|formspree\.io' --include='*.html' -r . ; then
   echo "Release blocked: replace the items above before merging."
+  fail=1
+fi
+if ! grep -qE 'sheetsUrl: *"https://script\.google\.com/macros/s/[^"]+/exec"' js/config.js; then
+  echo "Release blocked: add the Google Sheets web app URL to js/config.js (docs/google-sheets-setup.md)."
   fail=1
 fi
 if LC_ALL=C.UTF-8 grep -n -P '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]' --include='*.html' -r . ; then

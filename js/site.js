@@ -2,11 +2,6 @@ const SHEETS_URL = (window.SYF_CONFIG && window.SYF_CONFIG.sheetsUrl) || "";
 
 document.querySelectorAll("[data-year]").forEach(el => { el.textContent = new Date().getFullYear(); });
 
-function sendToSheets(data) {
-  if (!SHEETS_URL) return Promise.resolve();
-  return fetch(SHEETS_URL, { method: "POST", mode: "no-cors", body: new URLSearchParams(data) }).catch(() => {});
-}
-
 document.querySelectorAll("form[data-form]").forEach(form => {
   const status = form.querySelector(".form__status");
   const button = form.querySelector("button[type=submit]");
@@ -15,7 +10,7 @@ document.querySelectorAll("form[data-form]").forEach(form => {
   form.addEventListener("submit", async e => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    if (form.action.includes("YOUR_FORM_ID")) {
+    if (!SHEETS_URL) {
       status.textContent = "This form is not connected yet. Please call +91 80086 86352.";
       status.className = "form__status is-err";
       return;
@@ -24,13 +19,10 @@ document.querySelectorAll("form[data-form]").forEach(form => {
     button.textContent = "Sending...";
     status.textContent = "";
     status.className = "form__status";
-    const data = new FormData(form);
     try {
-      const [res] = await Promise.all([
-        fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } }),
-        sendToSheets(data)
-      ]);
-      if (!res.ok) throw new Error(String(res.status));
+      const res = await fetch(SHEETS_URL, { method: "POST", body: new URLSearchParams(new FormData(form)) });
+      const result = await res.json();
+      if (!res.ok || !result || result.ok !== true) throw new Error("not saved");
       form.reset();
       status.textContent = form.dataset.success || "Thank you. We have received your message.";
       status.className = "form__status is-ok";

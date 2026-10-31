@@ -14,7 +14,7 @@ Static site for https://thesoldiersyouthfoundation.com, hosted on GitHub Pages f
 
 Header and footer are repeated in every page. When you change one, change all seven pages.
 
-Forms post to Formspree. The form ID goes in each form's `action` attribute.
+Forms post to a Google Sheet through an Apps Script web app (`apps-script/Code.gs`). Its URL goes in `js/config.js`; setup in `docs/google-sheets-setup.md`.
 
 ## Before merging into main
 

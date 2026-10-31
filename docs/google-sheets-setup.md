@@ -1,6 +1,6 @@
 # Google Sheets: submissions, email alerts and impact stats
 
-Every form on the site (Contact, Training application, Partnership enquiry) is sent to Formspree **and** to a Google Sheet. The sheet emails an alert for each submission and also supplies the impact figures shown on the home page.
+Every form on the site (Contact, Training application, Partnership enquiry) is saved to a Google Sheet. The sheet emails an alert for each submission and also supplies the impact figures shown on the home page.
 
 Sign in to Google as **thesoldiersyouthfoundation@gmail.com** for every step.
 
@@ -29,7 +29,7 @@ window.SYF_CONFIG = {
 };
 ```
 
-5. Commit and push. Leaving `sheetsUrl` empty switches Sheets off; Formspree keeps working.
+5. Commit and push. While `sheetsUrl` is empty the forms show a "please call us" message and nothing is saved.
 
 After editing `Code.gs` later: **Deploy → Manage deployments → Edit → Version: New version → Deploy**. The URL stays the same.
 
@@ -51,7 +51,6 @@ In the **Stats** tab:
 ## 5. Email alerts
 
 - Each submission emails `NOTIFY_EMAIL` (top of `Code.gs`), with a link to the sheet. Reply goes straight to the sender when they gave an email.
-- Formspree also emails each submission. To get only one email, either set `SEND_EMAIL_ALERTS = false` in `Code.gs` or turn off email in Formspree (Workflow → Actions).
 - Gmail allows about 100 script emails a day on a free account (1,500 on Workspace).
 
 ## Privacy

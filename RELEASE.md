@@ -10,7 +10,7 @@ Branch: `redesign` → merge into `main` (GitHub Pages deploys from `main`).
 - Registration and transparency section on About, with legal status, registrar and registered address.
 - Official email `contact@thesoldiersyouthfoundation.com` and registered address on every page.
 - Support section and a Partner page with CSR and individual options, replacing the "Donate / Partner" link that only scrolled to the form.
-- Three forms (contact, training application, partnership enquiry) wired for Formspree, with consent checkboxes and a spam honeypot. They show a "not connected" message until the form ID is added.
+- Three forms (contact, training application, partnership enquiry) save to a Google Sheet, which emails an alert per submission. Consent checkboxes and a spam honeypot. They show a "not connected" message until the sheet URL is added.
 - Six programme cards merged into three: Defence recruitment preparation, Youth skill development, Mentorship.
 - Removed: all emojis, placeholder text, "TBD" events, the empty Impact numbers, "Tracks we support", the hero tick list and the footer hosting note.
 - Gallery trimmed to 6 photos and 1 video, with filters. Photos renamed and compressed: 34 MB of assets down to about 1.4 MB.
@@ -22,7 +22,8 @@ Branch: `redesign` → merge into `main` (GitHub Pages deploys from `main`).
 The release check fails until these are done.
 
 - [x] Chairman's full name: Lieutenant Colonel (Dr) S. Srinivas Rao
-- [x] Formspree forms: Contact `xljjjwpk`, Partnership `xqpppdyj`, Training application `mnpppbgg` (all email thesoldiersyouthfoundation@gmail.com)
+- [ ] Google Sheet set up and its web app URL in `js/config.js` (docs/google-sheets-setup.md)
+- [ ] One test submission per form arrives in the sheet and by email
 - [x] Public email: thesoldiersyouthfoundation@gmail.com until contact@thesoldiersyouthfoundation.com receives mail
 - [ ] Confirm PIN 500011 and that the registered address is the right public address
 - [ ] Submit each form once on the live preview and confirm the email arrives
@@ -49,7 +50,7 @@ Each of these was removed rather than shown as a placeholder. Add them back when
 
 - Forms also post to a Google Sheet, which emails an alert per submission; the home page Impact section reads its figures from the sheet's Stats tab.
 - Set up per `docs/google-sheets-setup.md`, then paste the web app URL into `js/config.js`.
-- With `sheetsUrl` empty, Sheets is off: forms still go to Formspree and the Impact section stays hidden.
+- With `sheetsUrl` empty the forms show a "call us" message and the Impact section stays hidden; the release check blocks merging.
 
 ## Deploy steps
 

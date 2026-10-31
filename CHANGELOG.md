@@ -6,7 +6,7 @@ See RELEASE.md for the full list and the pre-launch checklist.
 
 - Six-page site in the Ceremonial design (olive, brass, parchment; Cinzel and Source Serif 4)
 - Registration details, official email and address
-- Working forms via Formspree
+- Working forms saved to Google Sheets, with email alerts
 - No emojis, no placeholder text, three programmes instead of six
 - Gallery of 6 compressed photos and 1 video
 - Release check script and GitHub Action
