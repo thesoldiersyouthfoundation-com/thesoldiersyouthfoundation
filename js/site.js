@@ -74,22 +74,9 @@ chips.forEach(chip => {
   });
 });
 
-document.querySelectorAll(".video-facade").forEach(btn => {
-  const thumb = btn.querySelector("img");
-  const dropThumb = () => thumb && thumb.remove();
-  if (thumb) {
-    if (thumb.complete && thumb.naturalWidth === 0) dropThumb();
-    thumb.addEventListener("error", dropThumb);
-  }
-  btn.addEventListener("click", () => {
-    const wrap = document.createElement("div");
-    wrap.className = "video";
-    const frame = document.createElement("iframe");
-    frame.src = "https://drive.google.com/file/d/" + encodeURIComponent(btn.dataset.drive) + "/preview";
-    frame.title = btn.getAttribute("aria-label").replace("Play ", "");
-    frame.allow = "autoplay; fullscreen";
-    frame.allowFullscreen = true;
-    wrap.append(frame);
-    btn.replaceWith(wrap);
+// Play one training clip at a time.
+document.querySelectorAll(".video video").forEach(v => {
+  v.addEventListener("play", () => {
+    document.querySelectorAll(".video video").forEach(o => { if (o !== v) o.pause(); });
   });
 });
