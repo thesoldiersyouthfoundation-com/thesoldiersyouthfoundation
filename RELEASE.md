@@ -5,7 +5,7 @@ Branch: `redesign` → merge into `main` (GitHub Pages deploys from `main`).
 ## What changes
 
 - One long page becomes six pages: Home, About, Programmes, Partner with us, Gallery, Contact. A 404 page is added.
-- New design from the redesign prototype: navy `#0B2B50`, accent `#B45309`, Archivo headings, Source Sans 3 body text.
+- Ceremonial design: olive `#2E3A23`, brass `#C9A35A`, parchment `#F5F0E4`, maroon `#6B1E23`; Cinzel headings, Source Serif 4 body text; centred crest header and medal-ribbon dividers.
 - Credentials strip under the hero: Registration No. 94 of 2021, Telangana Societies Registration Act, 2001.
 - Registration and transparency section on About, with legal status, registrar and registered address.
 - Official email `contact@thesoldiersyouthfoundation.com` and registered address on every page.
