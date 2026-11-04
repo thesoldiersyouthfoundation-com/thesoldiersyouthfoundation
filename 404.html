@@ -19,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add('js')</script>
 
 </head>
 <body>
@@ -30,11 +31,60 @@
       <span><span class="brand__name">The Soldiers Youth Foundation</span><span class="brand__tag">Discipline · Skills · Service</span></span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="about.html">About</a>
-      <a href="programmes.html">Programmes</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn btn--navy" href="partner.html">Partner with us</a>
+      <div class="nav__item">
+        <a class="nav__link" href="about.html">About</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-about"><span class="visually-hidden">About menu</span></button>
+        <ul class="nav__menu" id="menu-about">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#mission">Mission and values</a></li>
+          <li><a href="about.html#leadership">Leadership</a></li>
+          <li><a href="about.html#news">Press coverage</a></li>
+          <li><a href="about.html#transparency">Registration and transparency</a></li>
+        </ul>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="programmes.html">Programmes</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-programmes"><span class="visually-hidden">Programmes menu</span></button>
+        <ul class="nav__menu" id="menu-programmes">
+          <li><a href="programmes.html#defence">Defence recruitment preparation</a></li>
+          <li><a href="programmes.html#skills">Youth skill development</a></li>
+          <li><a href="programmes.html#mentorship">Mentorship</a></li>
+          <li><a href="programmes.html#eligibility">Who can apply</a></li>
+          <li><a href="programmes.html#apply">Apply for training</a></li>
+        </ul>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="gallery.html">Gallery</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-gallery"><span class="visually-hidden">Gallery menu</span></button>
+        <ul class="nav__menu" id="menu-gallery">
+          <li><a href="gallery.html#training">Training photos</a></li>
+          <li><a href="gallery.html#video">Training videos</a></li>
+          <li><a href="gallery.html#news">In the news</a></li>
+          <li><a href="gallery.html#republic-day">Republic Day</a></li>
+          <li><a href="gallery.html#rally">Veterans' bike rally</a></li>
+        </ul>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="contact.html">Contact</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-contact"><span class="visually-hidden">Contact menu</span></button>
+        <ul class="nav__menu" id="menu-contact">
+          <li><a href="contact.html#message">Send us a message</a></li>
+          <li><a href="contact.html#find-us">Address and map</a></li>
+          <li><a href="tel:+918008686352">Call +91 80086 86352</a></li>
+          <li><a href="mailto:thesoldiersyouthfoundation@gmail.com">Email us</a></li>
+        </ul>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link nav__link--cta" href="partner.html">Partner with us</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-partner"><span class="visually-hidden">Partner with us menu</span></button>
+        <ul class="nav__menu" id="menu-partner">
+          <li><a href="partner.html#why">Why partner with us</a></li>
+          <li><a href="partner.html#fund">Ways to fund</a></li>
+          <li><a href="partner.html#receive">What you receive</a></li>
+          <li><a href="partner.html#give">Donate or volunteer</a></li>
+          <li><a href="partner.html#talk">Request partnership brief</a></li>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
