@@ -532,3 +532,36 @@ p { margin: 0; }
   .slides__dots button { width: 10px; height: 10px; }
 }
 html, body { overflow-x: clip; }
+/* Home hero: text left, group photo slideshow right */
+.hero--split .wrap {
+  max-width: 1680px; padding: 56px 40px 64px; flex-direction: row; align-items: center; gap: 56px; text-align: left;
+}
+.hero--split .hero__text { flex: 1 1 0; min-width: 0; max-width: 640px; align-items: flex-start; gap: 20px; }
+.hero--split h1 { font-size: 52px; }
+.hero--split .hero__sub { max-width: none; }
+.hero--split .hero__actions { justify-content: flex-start; }
+.hero--split .hero__text > * { animation-name: fadeRight; }
+.hero--split .hero__media { flex: 1.35 1 0; min-width: 0; max-width: none; animation-name: fadeLeft; }
+.hero--split .slides .slide img { height: clamp(320px, 32vw, 520px); }
+.hero__creds {
+  list-style: none; margin: 10px 0 0; padding: 18px 0 0; border-top: 1px solid rgba(217, 195, 142, .35);
+  display: flex; flex-wrap: wrap; gap: 6px 26px; font-size: 16px; color: var(--on-olive);
+}
+.hero__creds strong { font-family: var(--font-head); font-weight: 600; letter-spacing: 0.04em; color: var(--brass-light); }
+.hero__creds a { font-family: var(--font-head); font-weight: 600; letter-spacing: 0.05em; color: var(--brass-light); }
+.hero__creds a:hover { color: var(--bg); }
+@keyframes fadeRight { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+@keyframes fadeLeft { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+@media (max-width: 1100px) {
+  .hero--split .wrap { flex-direction: column; align-items: stretch; gap: 36px; padding: 48px 28px 56px; }
+  .hero--split .hero__text { max-width: 760px; }
+  .hero--split .hero__text, .hero--split .hero__media { flex: none; }
+  .hero--split h1 { font-size: 44px; }
+  .hero--split .slides .slide img { height: 420px; }
+}
+@media (max-width: 720px) {
+  .hero--split .wrap { padding: 36px 16px 44px; gap: 28px; }
+  .hero--split h1 { font-size: 32px; }
+  .hero--split .slides .slide img { height: 240px; }
+  .hero__creds { font-size: 15px; flex-direction: column; gap: 4px; }
+}
