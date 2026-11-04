@@ -201,3 +201,41 @@ toTop.setAttribute("aria-label", "Back to top");
 toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" }));
 document.body.append(toTop);
 window.addEventListener("scroll", () => toTop.classList.toggle("is-shown", window.scrollY > 700), { passive: true });
+// ---- Home hero slideshow -----------------------------------------------
+document.querySelectorAll("[data-slides]").forEach(box => {
+  const slides = Array.from(box.querySelectorAll(".slide"));
+  if (slides.length < 2) return;
+  const dotsBox = box.querySelector(".slides__dots");
+  let current = 0, timer = null;
+  const dots = slides.map((s, i) => {
+    const d = document.createElement("button");
+    d.type = "button";
+    d.setAttribute("aria-label", "Photo " + (i + 1) + ": " + s.querySelector("figcaption").textContent);
+    d.addEventListener("click", () => { show(i); restart(); });
+    dotsBox.append(d);
+    return d;
+  });
+  function show(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, j) => {
+      s.classList.toggle("is-active", j === current);
+      s.setAttribute("aria-hidden", String(j !== current));
+      const img = s.querySelector("img");
+      if (Math.abs(j - current) <= 1 || (current === slides.length - 1 && j === 0)) img.loading = "eager";
+    });
+    dots.forEach((d, j) => d.setAttribute("aria-current", String(j === current)));
+  }
+  function restart() {
+    clearInterval(timer);
+    if (!REDUCED) timer = setInterval(() => show(current + 1), 4000);
+  }
+  box.querySelector(".slides__btn--prev").addEventListener("click", () => { show(current - 1); restart(); });
+  box.querySelector(".slides__btn--next").addEventListener("click", () => { show(current + 1); restart(); });
+  box.addEventListener("mouseenter", () => clearInterval(timer));
+  box.addEventListener("mouseleave", restart);
+  box.addEventListener("focusin", () => clearInterval(timer));
+  box.addEventListener("focusout", restart);
+  document.addEventListener("visibilitychange", () => document.hidden ? clearInterval(timer) : restart());
+  show(0);
+  restart();
+});
