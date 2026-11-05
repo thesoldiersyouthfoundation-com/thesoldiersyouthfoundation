@@ -8,13 +8,15 @@ const SEND_EMAIL_ALERTS = true;
 const TABS = {
   'Training application': 'Applications',
   'Partnership enquiry': 'Partnerships',
+  'Eligibility check': 'Eligibility',
+  'Counselling request': 'Counselling',
   'Contact': 'Contact'
 };
 const STATS_TAB = 'Stats';
 const MAX_FIELD_LENGTH = 2000;
 
 // STEP 1: choose "setup" in the dropdown next to Run, then click Run once.
-// It creates the Applications, Partnerships, Contact and Stats tabs.
+// It creates the Applications, Partnerships, Eligibility, Counselling, Contact and Stats tabs.
 function setup() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   Object.keys(TABS).forEach(k => {

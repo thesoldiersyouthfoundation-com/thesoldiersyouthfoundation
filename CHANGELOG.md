@@ -1,5 +1,20 @@
 # Changelog
 
+## v2.3.0 — Simpler inner pages
+
+- About, Programmes, Partner and Eligibility pages no longer open with a banner and description; like Gallery and Contact they start with the page title and content
+- Programmes: batch timings line moved into the "Apply for the next batch" section
+- Founder's name updated to Lt Col (DR) S. Srinivasa Rao across the site
+
+## v2.2.0 — Eligibility checker
+
+- New page eligibility.html: candidates enter their details (name, phone, email, date of birth, town, gender, marital status — all required), qualification, NCC certificate and work status, and see which of 27 Army, Navy and Air Force entries (NDA, TES, CDS, AFCAT, TGC, SSC Tech, NCC Army and Air Force, JAG, Navy SSC, Territorial Army, Agniveer) they can apply for now, later, or not, with reasons and mark cut-offs to keep in mind
+- Every check is saved to the Google Sheet (Eligibility tab) with the candidate's details and results
+- After the results, candidates can book a free counselling call (date, time, language); bookings go to the Google Sheet with their eligibility summary
+- Entry rules live in js/eligibility-data.js (checked November 2026); edit that file when a notification changes
+- "Eligibility" added to the main menu and footer; "Check your eligibility" button in the home hero
+- apps-script/Code.gs: new Eligibility and Counselling tabs (redeploy the script to use them; until then both land in the Contact tab)
+
 ## v2.1.0 — Layout and motion
 
 - Larger text across the site (body 18px to 20px, headings and menus scaled to match)
